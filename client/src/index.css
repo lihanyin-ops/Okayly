@@ -1,0 +1,298 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* 
+  MindWork Design System
+  =====================
+  Design Movement: Morandi Minimalism — 莫兰迪极简主义
+  Color Philosophy: Low-saturation sage green as the primary emotional anchor.
+    Conveys calm, safety, and natural healing. Gradients suggest emotional flow.
+    Grain texture adds warmth and tactility, preventing the sterile "medical app" feel.
+  Core Principles:
+    1. Every color choice must feel like a breath, not a shout
+    2. Grain texture on all hero surfaces — never flat
+    3. Gradients flow top-to-bottom like emotional states settling
+    4. Typography: weight contrast creates hierarchy without color noise
+*/
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+}
+
+:root {
+  /* Morandi Green Palette — 莫兰迪绿色系 */
+  --morandi-50:  oklch(0.97 0.018 155);   /* 极浅薄荷 */
+  --morandi-100: oklch(0.93 0.028 155);   /* 浅雾绿 */
+  --morandi-200: oklch(0.87 0.038 152);   /* 柔和鼠尾草 */
+  --morandi-300: oklch(0.78 0.048 150);   /* 莫兰迪绿主色 */
+  --morandi-400: oklch(0.68 0.055 148);   /* 中深鼠尾草 */
+  --morandi-500: oklch(0.58 0.058 146);   /* 深莫兰迪绿 */
+  --morandi-600: oklch(0.48 0.052 144);   /* 苔藓绿 */
+  --morandi-700: oklch(0.38 0.042 142);   /* 深苔藓 */
+
+  /* Warm Neutrals — 暖中性色 */
+  --warm-50:  oklch(0.98 0.008 80);    /* 米白 */
+  --warm-100: oklch(0.95 0.012 75);    /* 浅沙 */
+  --warm-200: oklch(0.90 0.018 72);    /* 沙米色 */
+  --warm-300: oklch(0.80 0.022 70);    /* 暖灰 */
+  --warm-400: oklch(0.65 0.020 68);    /* 中暖灰 */
+  --warm-500: oklch(0.50 0.018 65);    /* 深暖灰 */
+  --warm-600: oklch(0.35 0.015 62);    /* 炭灰 */
+  --warm-700: oklch(0.22 0.012 60);    /* 深炭 */
+
+  /* Mood Colors — 情绪色彩（低饱和度） */
+  --mood-1: oklch(0.55 0.060 260);   /* 抑郁蓝 */
+  --mood-2: oklch(0.62 0.045 240);   /* 疲惫蓝灰 */
+  --mood-3: oklch(0.72 0.030 200);   /* 平静青 */
+  --mood-4: oklch(0.78 0.038 155);   /* 莫兰迪绿（中性） */
+  --mood-5: oklch(0.82 0.045 130);   /* 轻松草绿 */
+  --mood-6: oklch(0.80 0.055 90);    /* 温暖黄绿 */
+  --mood-7: oklch(0.78 0.060 75);    /* 活力暖黄 */
+
+  /* Semantic Tokens */
+  --radius: 1.2rem;
+  --background: oklch(0.97 0.010 155);
+  --foreground: oklch(0.22 0.015 145);
+  --card: oklch(0.99 0.006 155);
+  --card-foreground: oklch(0.25 0.015 145);
+  --popover: oklch(0.99 0.006 155);
+  --popover-foreground: oklch(0.25 0.015 145);
+  --primary: oklch(0.52 0.060 148);
+  --primary-foreground: oklch(0.98 0.006 155);
+  --secondary: oklch(0.92 0.022 152);
+  --secondary-foreground: oklch(0.35 0.030 148);
+  --muted: oklch(0.93 0.015 152);
+  --muted-foreground: oklch(0.52 0.025 148);
+  --accent: oklch(0.88 0.030 150);
+  --accent-foreground: oklch(0.28 0.030 145);
+  --destructive: oklch(0.60 0.080 30);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.88 0.020 152);
+  --input: oklch(0.90 0.018 152);
+  --ring: oklch(0.58 0.055 148);
+  --chart-1: var(--mood-1);
+  --chart-2: var(--mood-3);
+  --chart-3: var(--mood-4);
+  --chart-4: var(--mood-5);
+  --chart-5: var(--mood-7);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+  }
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [type="button"]:not(:disabled),
+  [type="submit"]:not(:disabled),
+  a[href],
+  select:not(:disabled) {
+    @apply cursor-pointer;
+  }
+}
+
+@layer components {
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .flex {
+    min-height: 0;
+    min-width: 0;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+      max-width: 1280px;
+    }
+  }
+
+  /* ===== GRAIN TEXTURE OVERLAY ===== */
+  /* Apply to hero sections and backgrounds for tactile warmth */
+  .grain {
+    position: relative;
+  }
+  .grain::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+    opacity: 0.55;
+    mix-blend-mode: overlay;
+    z-index: 1;
+  }
+  .grain > * {
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ===== MORANDI GRADIENT BACKGROUNDS ===== */
+  .bg-morandi-gradient {
+    background: linear-gradient(
+      160deg,
+      oklch(0.94 0.028 158) 0%,
+      oklch(0.90 0.035 152) 40%,
+      oklch(0.86 0.030 145) 100%
+    );
+  }
+
+  .bg-morandi-deep {
+    background: linear-gradient(
+      160deg,
+      oklch(0.42 0.055 150) 0%,
+      oklch(0.35 0.048 145) 50%,
+      oklch(0.28 0.038 140) 100%
+    );
+  }
+
+  .bg-morandi-warm {
+    background: linear-gradient(
+      160deg,
+      oklch(0.95 0.018 155) 0%,
+      oklch(0.92 0.022 100) 100%
+    );
+  }
+
+  /* ===== PHONE FRAME ===== */
+  .phone-frame {
+    width: 390px;
+    height: 844px;
+    border-radius: 50px;
+    overflow: hidden;
+    position: relative;
+    box-shadow:
+      0 0 0 2px oklch(0.75 0.025 148),
+      0 30px 80px oklch(0.35 0.040 148 / 0.25),
+      0 10px 30px oklch(0.35 0.040 148 / 0.15);
+    background: oklch(0.97 0.010 155);
+    flex-shrink: 0;
+  }
+
+  /* ===== GLASS CARD ===== */
+  .glass-card {
+    background: oklch(0.99 0.006 155 / 0.75);
+    backdrop-filter: blur(16px);
+    border: 1px solid oklch(0.88 0.020 152 / 0.6);
+    border-radius: var(--radius-xl);
+  }
+
+  /* ===== MOOD CHIP ===== */
+  .mood-chip {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    position: relative;
+  }
+  .mood-chip:hover {
+    transform: scale(1.12);
+  }
+  .mood-chip.selected {
+    transform: scale(1.18);
+    box-shadow: 0 0 0 3px white, 0 0 0 5px currentColor;
+  }
+
+  /* ===== BOTTOM NAV ===== */
+  .bottom-nav {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: oklch(0.98 0.008 155 / 0.92);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid oklch(0.88 0.020 152 / 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0 8px 16px;
+    z-index: 50;
+  }
+
+  /* ===== STATUS BAR ===== */
+  .status-bar {
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    font-size: 12px;
+    font-weight: 600;
+    color: oklch(0.30 0.020 148);
+    flex-shrink: 0;
+  }
+
+  /* ===== PAYWALL OVERLAY ===== */
+  .paywall-overlay {
+    position: absolute;
+    inset: 0;
+    background: oklch(0.15 0.020 148 / 0.65);
+    backdrop-filter: blur(8px);
+    z-index: 100;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  /* ===== PIXEL MOOD WALL ===== */
+  .pixel-cell {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 3px;
+    transition: transform 0.15s ease;
+  }
+  .pixel-cell:hover {
+    transform: scale(1.3);
+    z-index: 10;
+    position: relative;
+  }
+}
