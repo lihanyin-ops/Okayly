@@ -11,11 +11,11 @@ struct OnboardScreen1: View {
                 AppStatusBar()
                 Spacer()
                 VStack(spacing: 0) {
-                    Image(systemName: "leaf.fill")
-                        .font(.system(size: 36, weight: .semibold))
-                        .symbolRenderingMode(.hierarchical)
-                        .foregroundStyle(Color.mwPrimaryDark)
+                    Image("OnboardingIcon")
+                        .resizable()
+                        .scaledToFill()
                         .frame(width: 82, height: 82)
+                        .clipShape(RoundedRectangle(cornerRadius: 28, style: .continuous))
                         .background(.white.opacity(0.44), in: RoundedRectangle(cornerRadius: 28, style: .continuous))
                         .overlay(RoundedRectangle(cornerRadius: 28).stroke(.white.opacity(0.55), lineWidth: 1))
                     VStack(spacing: 16) {

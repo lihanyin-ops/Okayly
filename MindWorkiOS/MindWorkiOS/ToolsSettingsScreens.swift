@@ -665,7 +665,13 @@ struct SubscribeScreen: View {
                 LinearGradient(colors: [.hex("9CC5AE"), .hex("7CAB91")], startPoint: .topLeading, endPoint: .bottomTrailing).ignoresSafeArea()
                 GrainOverlay(opacity: 0.45).ignoresSafeArea()
                 VStack(spacing: 18) {
-                    SoftIcon(system: "leaf.fill", size: 70, color: .white.opacity(0.95))
+                    Image("OnboardingIcon")
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 86, height: 86)
+                        .clipShape(RoundedRectangle(cornerRadius: 28, style: .continuous))
+                        .overlay(RoundedRectangle(cornerRadius: 28).stroke(.white.opacity(0.55), lineWidth: 1))
+                        .shadow(color: .black.opacity(0.08), radius: 14, y: 8)
                     Text("欢迎加入完整版").font(.serif(24)).foregroundStyle(.white)
                     Text("\(subscriptions.currentPlan.title)已生效\n所有功能现已解锁").font(.sans(14)).multilineTextAlignment(.center).foregroundStyle(.white.opacity(0.85))
                     Button("开始探索完整版 →") {
@@ -684,7 +690,13 @@ struct SubscribeScreen: View {
                     HStack { Spacer(); CircleIconButton(system: "xmark") { store.navigate(.home) } }.padding(.horizontal, 20)
                     ScrollView {
                         VStack(spacing: 18) {
-                            SoftIcon(system: "leaf.fill", size: 34, color: Color.mwIcon)
+                            Image("OnboardingIcon")
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 56, height: 56)
+                                .clipShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
+                                .overlay(RoundedRectangle(cornerRadius: 18).stroke(.white.opacity(0.65), lineWidth: 1))
+                                .shadow(color: Color.mwPrimary.opacity(0.12), radius: 10, y: 5)
                             Text("好好的完整版").font(.serif(25)).foregroundStyle(Color.mwText)
                             Text("14 天免费试用，随时可取消").font(.sans(14)).foregroundStyle(Color.mwMuted)
                             SectionCard {
