@@ -249,6 +249,7 @@ struct FullScreenMoodPicker: View {
                         Image(systemName: mood.icon)
                             .font(.system(size: 88, weight: .semibold))
                             .symbolRenderingMode(.hierarchical)
+                            .foregroundStyle(.white.opacity(0.96))
                             .shadow(color: .black.opacity(0.2), radius: 18, y: 8)
                         VStack(spacing: 8) {
                             Text(L10n.t(mood.label))
@@ -280,9 +281,9 @@ struct FullScreenMoodPicker: View {
                                 .overlay(RoundedRectangle(cornerRadius: 18).stroke(.white.opacity(0.5), lineWidth: 1.5))
                         }
                         HStack(spacing: 12) {
-                            Button { current = max(0, current - 1) } label: { Image(systemName: "chevron.left").frame(width: 28, height: 28).background(.white.opacity(0.2), in: Circle()) }
+                            Button { current = max(0, current - 1) } label: { Image(systemName: "chevron.left").foregroundStyle(.white).frame(width: 28, height: 28).background(.white.opacity(0.2), in: Circle()) }
                             Text("← 滑动切换 →").font(.sans(12))
-                            Button { current = min(6, current + 1) } label: { Image(systemName: "chevron.right").frame(width: 28, height: 28).background(.white.opacity(0.2), in: Circle()) }
+                            Button { current = min(6, current + 1) } label: { Image(systemName: "chevron.right").foregroundStyle(.white).frame(width: 28, height: 28).background(.white.opacity(0.2), in: Circle()) }
                         }
                         .foregroundStyle(mood.subColor)
                     }

@@ -712,7 +712,7 @@ struct SubscribeScreen: View {
                                 }
                             }
                             HStack(spacing: 12) {
-                                planCard(plan: .yearly, fallbackPrice: "¥298", fallbackSub: "¥24.8/月", badge: "省 40%")
+                                planCard(plan: .yearly, fallbackPrice: "¥298", fallbackSub: "¥24.8/月", badge: "约省50%")
                                 planCard(plan: .monthly, fallbackPrice: "¥42", fallbackSub: "¥42/月", badge: nil)
                             }
                             if subscriptions.isLoadingProducts {
@@ -786,14 +786,33 @@ struct SubscribeScreen: View {
         return Button {
             plan = item
         } label: {
-            VStack(alignment: .leading, spacing: 4) {
-                if let badge { Text(L10n.t(badge)).font(.sans(10, weight: .bold)).foregroundStyle(.white).padding(.horizontal, 8).padding(.vertical, 3).background(Color.mwPrimary, in: Capsule()).frame(maxWidth: .infinity, alignment: .trailing) }
-                Text(item.title).font(.sans(12, weight: .medium)).foregroundStyle(Color.mwMuted)
-                Text(product?.displayPrice ?? fallbackPrice).font(.system(size: 22, weight: .bold, design: .rounded)).foregroundStyle(Color.mwText)
-                Text(product?.description ?? L10n.t(fallbackSub)).font(.sans(12)).foregroundStyle(Color.mwMuted).lineLimit(2)
+            ZStack(alignment: .topTrailing) {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(item.title).font(.sans(12, weight: .medium)).foregroundStyle(Color.mwMuted)
+                    Text(product?.displayPrice ?? fallbackPrice).font(.system(size: 22, weight: .bold, design: .rounded)).foregroundStyle(Color.mwText)
+                    Text(product?.description ?? L10n.t(fallbackSub))
+                        .font(.sans(12))
+                        .foregroundStyle(Color.mwMuted)
+                        .lineLimit(2)
+                        .minimumScaleFactor(0.9)
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+                .padding(16)
+                if let badge {
+                    Text(L10n.t(badge))
+                        .font(.sans(10, weight: .bold))
+                        .foregroundStyle(.white)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.75)
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 3)
+                        .background(Color.mwPrimary, in: Capsule())
+                        .padding(.top, 10)
+                        .padding(.trailing, 10)
+                }
             }
-            .padding(16)
             .frame(maxWidth: .infinity, alignment: .leading)
+            .frame(height: 112)
             .background(isSelected ? Color.mwPrimary.opacity(0.12) : .white.opacity(0.78), in: RoundedRectangle(cornerRadius: 20))
             .overlay(RoundedRectangle(cornerRadius: 20).stroke(isSelected ? Color.mwPrimary.opacity(0.55) : Color.hex("D8E4DD"), lineWidth: 1.5))
         }
